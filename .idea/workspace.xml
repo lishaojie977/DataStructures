@@ -128,7 +128,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588817693555</updated>
       <workItem from="1588817703085" duration="10098000" />
-      <workItem from="1588902215894" duration="2668000" />
+      <workItem from="1588902215894" duration="4674000" />
     </task>
     <servers />
   </component>
@@ -155,7 +155,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DataStructures$lesson2_stack.coverage" NAME="lesson2_stack Coverage Results" MODIFIED="1588822159305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DS3_BsaeStructurse" />
-    <SUITE FILE_PATH="coverage/DataStructures$lesson3_queue.coverage" NAME="lesson3_queue Coverage Results" MODIFIED="1588843260357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DS3_BsaeStructurse" />
+    <SUITE FILE_PATH="coverage/DataStructures$lesson3_queue.coverage" NAME="lesson3_queue Coverage Results" MODIFIED="1588908966264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DS3_BsaeStructurse" />
     <SUITE FILE_PATH="coverage/DataStructures$DS_2_PY.coverage" NAME="DS_2.PY Coverage Results" MODIFIED="1588819041807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
