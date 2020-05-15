@@ -12,19 +12,19 @@
 
 
 # 选择排序
-def seletcSort(alist):
-    for fillslot in range(len(nums)-1,0,-1):
-        positionMax = 0
-        for location in range(1,fillslot+1):
-            if nums[location] > nums[positionMax]:
-                positionMax = location
-        temp = nums[fillslot]
-        nums[fillslot] = nums[positionMax]
-        nums[positionMax] = temp
+# def seletcSort(alist):
+#     for fillslot in range(len(nums)-1,0,-1):
+#         positionMax = 0
+#         for location in range(1,fillslot+1):
+#             if nums[location] > nums[positionMax]:
+#                 positionMax = location
+#         temp = nums[fillslot]
+#         nums[fillslot] = nums[positionMax]
+#         nums[positionMax] = temp
 
-nums = [5,2,3,1,0]
-seletcSort(nums)
-print(nums)
+# nums = [5,2,3,1,0]
+# seletcSort(nums)
+# print(nums)
 
 '''
     
@@ -156,6 +156,136 @@ insertSort(alist)
 print(alist)
 
 '''
+
+
+'''
+    四、希尔排序(缩小间隔排序):以插入排序为基础，将原来要排序的列表划分成一些子列表，
+    再对每一个子列表执行插入操作，从而实现对插入序列性能的改进
+    关键：划分子列表的 特定方法
+    alist = [54,26,93,17,77,31,44,55,20]
+
+    1、以3为间隔来划分，分成3个子列表
+        [54,17,44]  [17,26,93,44,77,31,54,55,20]
+        [26,77,55]  [17,26,93,44,55,31,54,77,20]
+        [93,31,20]  [17,26,20,44,55,31,54,77,93]
+
+        以1位间隔，再进行标准插入排序：[17]    [26,20,44,55,31,54,77,93]
+        优化了比对和移动的次数
+
+    2、以2为间隔来划分，分成5个子列表
+
+
+
+# LeetCode第147题 对链表进行排序
+def shellSort(alist):
+    sublistcount = len(alist)//2
+    while sublistcount > 0:
+        for i in range(sublistcount):
+            gapInsertionSort(alist,i,sublistcount)
+    
+        print("当前子列表为:",sublistcount,"当前整体列表为：",alist)
+        sublistcount = sublistcount//2
+# 特定间隔分子列表，然后执行标准插入排序
+def gapInsertionSort(alist,start,gap):
+    for i in range(start+gap,len(alist),gap):
+        currentValue = alist[i]
+        position = i
+        while position >= gap and alist[position-gap] > currentValue:
+            alist[position] = alist[position-gap]
+            position = position - gap
+        alist[position] =  currentValue
+alist = [54,26,93,17,77,31,44,55,20]
+shellSort(alist)
+print(alist)
+'''
+
+
+
+'''
+    五、归并排序（mergeSort）
+        具体做法：递归算法，不断的将列表拆分为一半。
+        如果列表为空或者只有一个元素，那么根据定义，它就被排好了
+        alist = [54,26,93,17,77,31,44,55,20]
+        第1次拆分：   [54,26,93,17]              [77,31,44,55,20]
+        第2次拆分： [54,26]   [93,17]           [77,31]     [44,55,20]
+        第3次拆分：[54] [26] [93]  [17]        [77]  [31]  [44]  [55,20]
+        第4次拆分                                               [55] [20]
+归并过程
+        [54]   [26]     [93]  [17]    [77]   [31]   [44] [55]   [20]
+1          [26,54]         [17,93]       [31,77]            [20,55]
+2              [17,26, 54,93]                          [20,44,55]
+3                                             [20,31,44,55,77]
+4                       [17,20,26,31,44,54,55,77,93]
+def mergeSort(alist):
+    if len(alist) > 1:
+        mid = len(alist)//2
+        lefthalf = alist[:mid]
+        righthalf = alist[mid:]
+        mergeSort(lefthalf)
+        mergeSort(righthalf)
+        i = 0
+        j = 0
+        k = 0
+        while i < len(lefthalf) and j < len(righthalf):
+            if lefthalf[i] < righthalf[j]:
+                alist[k] = lefthalf[i]
+                i = i+1
+            else:
+                alist[k] = righthalf[j]
+                j = j+1
+            k = k+1
+        while i < len(lefthalf):
+            alist[k] = lefthalf[i]
+            i = i+1
+            k = k+1
+        
+        while j < len(righthalf):
+            alist[k] = righthalf[j]
+            j = j+1
+            k = k+1
+        print("归并：",alist)
+alist = [54,26,93,17,77,31,44,55,20]
+mergeSort(alist)
+print(alist)
+'''
+
+
+
+'''
+    六、快速排序
+        选择一个值作为枢纽值，一般就是列表第一项，枢纽值作为帮助拆分的标准，
+        alist = [54,26,93,17,77,31,44,55,20]
+                [17,20,26,31,44,54,55,77,93]
+        54最终在原列表中31的位置上，这个位置叫做：拆分点
+        54     左标记 [26,93,17,77,31,44,55,20] 右标记  
+        首先增加左标记，知道找到一个大于枢纽值得值，停止，然后递减右标记，知道找到一个小于枢纽值的值，停止。
+        交换这两项
+        增加左标记
+        26 < 54
+        93 > 54  stop
+        递减右标记
+        20 < 54  stop
+        交换
+        第一次的结果  [54,26,20,17,77,31,44,55,93]
+        第二次的结果  [54,26,20,17,44,31,77,55,93]
+        第三次的结果  [31,26,20,17,44,54,77,55,93]
+        根据拆分点，拆左右两个列表
+        [31,26,20,17,44]   [77,55,93]
+        重复以上过程
+        [17,26,20,31,44]   [55,77,93]
+        [17,26,20]
+        [26,20]
+        [20,26]
+'''
+def quickSort(alist):
+    pass
+
+
+alist = [54,26,93,17,77,31,44,55,20]
+quickSort(alist)
+print(alist)
+
+
 
 
 
