@@ -86,7 +86,7 @@ print(r.getRightChild().getRootVal())
       如果当前符号是列表['+','-','/','*']中，将当前节点的根值设置为由当前符号表示的运算法。添加一个新节点作为当前节点的右子节点，并下降到右子节点
       如果当前符号是数字，将当前节点的根值设置为该数字并返回父节点
       如果当前符号是“)”，则转到当前节点的父节点
-'''
+
 from pythonds.basic.stack import Stack
 from pythonds.trees.binaryTree import BinaryTree
 
@@ -123,7 +123,28 @@ fpexp = "( ( 7 + 3 ) * ( 5 - 2 ) )"
 parseTree = buildParseTree(fpexp)
 parseTree.postorder()
 
+'''
+
+
+
 
 # 定义一个函数，使用以上的构建函数，计算出完全表达式( ( 7 + 3 ) * ( 5 - 2 ) )的结果
-def evaluate(parseTree):
-    pass
+import operator
+# 递归
+def evaluate(parseTree):
+    opers = {
+        '+':operator.add,
+        '-':operator.sub,
+        '*':operator.mul,
+        '/':operator.truediv
+    }
+    leftChild = parseTree.getLeftChild()
+    rightChild = parseTree.getRightChild()
+    if leftChild and rightChild:
+        result = opers[parseTree.getRootVal()](evaluate(leftChild),evaluate(rightChild))
+        return result
+        
+    else:
+        return parseTree.getRootVal()
+
+print(evaluate(parseTree))
